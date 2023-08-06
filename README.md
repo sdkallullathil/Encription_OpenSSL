@@ -1,11 +1,12 @@
 
-# Secure Encryption Passwords with OpenSS
+# Securing Password: Strengthening Data Protection with OpenSSL in Kali Linux
 
 
 <h2>Description</h2>
-In this portfolio project, I have developed a robust system that utilizes OpenSSL in the Kali Linux command line to generate unique and secure encryption passwords. OpenSSL is a powerful tool renowned for its wide range of network security capabilities, including secure implementations of various cryptographic protocols and algorithms. The core objective of this project is to enhance security by encrypting the generated passwords under a master password. This additional layer of encryption ensures that the passwords themselves remain secure and protected from unauthorized access.The process involves creating and encrypting passwords using different ciphers to bolster the overall security. Additionally, the system effectively safeguards secret files by encrypting them and ensures that the plaintext passwords are never exposed or stored on the disk.<br/><br/>
+In this project, I've developed a robust system that harnesses the power of OpenSSL in the Kali Linux command line to generate unique and secure encryption passwords. OpenSSL is renowned for its wide range of network security capabilities, boasting secure implementations of various cryptographic protocols and algorithms. The primary goal of this project is to enhance security by encrypting the generated passwords under a master password, providing an additional layer of protection against unauthorized access.
 
-Furthermore, the system provides a secure method for sharing encrypted contents with specific individuals without revealing the underlying passwords. By employing this approach, users can maintain control over who can access the decrypted content while preserving the confidentiality of sensitive data. In conclusion, this portfolio project showcases the implementation of a comprehensive and secure encryption password system utilizing OpenSSL. The integration of various cryptographic techniques strengthens data protection, making it suitable for safeguarding sensitive information in real-world applications.
+The process involves creating and encrypting passwords using different ciphers, bolstering the overall security of the system. Additionally, the project ensures the utmost security for secret files by encrypting them, while never exposing or storing the plaintext passwords on the disk. A significant aspect of this project is its provision for securely exchanging passwords.
+Moreover, the system facilitates secure sharing of encrypted contents with specific individuals, without revealing the underlying passwords. This approach allows users to retain control over who can access decrypted content while preserving the confidentiality of sensitive data.
 
 
 <h2>Utilities Used</h2>
@@ -30,7 +31,7 @@ Furthermore, the system provides a secure method for sharing encrypted contents 
 To begin the project, I establish a directory named "OpenSSL_lab." As a demonstration, I employ a generic bash command to randomly generate a 32-byte hex-encoded string. Subsequently, the string is encrypted using the AES-256-CBC cipher and saved to a file. To ensure robust security, the encryption process employs a password with secure key derivation.
 <br />
 <br />
-<img src="https://github.com/sdkallullathil/Encription_OpenSSL/blob/a9f7ebb48db698797b1d1a5eee224b4bf09085e2/sample1.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/sdkallullathil/Encription_OpenSSL/blob/57e8206fda88538d8c2734d091d05fc704032dc0/sampl3.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 The "-iter" option in OpenSSL necessitates an integer argument, leading the program to iterate the key derivation function multiple times. This approach enhances protection against dictionary attacks. A higher value passed to "iter" signifies a more secure setup, but it may also incur a performance cost. To further bolster security, it is recommended to add the "-pbkdf2" option, which employs a more secure key derivation function, making it a crucial step in the process.
@@ -40,11 +41,11 @@ The "-iter" option in OpenSSL necessitates an integer argument, leading the prog
 I have successfully generated three distinct AES-256-CBC encrypted files: password1.enc, password2.enc, and password3.enc. Each file contains the ciphertext of a unique randomly generated password. All these encrypted password files are securely stored in a designated subdirectory named "OpenSSL_Lab/Password". In the subsequent stages of the project, these passwords will play a crucial role in encrypting three different secret texts, ensuring data confidentiality and reinforcing the overall security of the system.
 <br />
 <br />
-<img src="https://github.com/sdkallullathil/Encription_OpenSSL/blob/b65cc4bc423527d2cb6d56a906407e696ad4d9e5/pass.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/sdkallullathil/Encription_OpenSSL/blob/65ab69e510141b60beca4b33f0576e5b966497b8/pass3.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
 <br />
-<br />
+In the provided command, the -salt option is utilized in conjunction with OpenSSL's AES-256-CBC encryption to introduce a random salt value into the encryption process. This salt serves as an additional input to the encryption algorithm, bolstering the overall security of the encryption process.
 
-For convenience in this lab setting, I have employed the same keys for all three passwords, which are stored in a file named "pass.txt." It's important to note that this practice of storing passwords in plain text is not recommended in real-life scenarios. In actual implementations, I would use a password manager to ensure stronger security and confidentiality. However, for the purpose of this lab, it simplifies the process and avoids the need to repeatedly type the password.
+A noteworthy aspect of this project is the utilization of the same keys for all three passwords, which are stored in a file named "pass.txt" for convenience in the lab setting. It is essential to acknowledge that this practice of storing passwords in plain text is not recommended for real-life scenarios. In actual implementations, a password manager should be used to ensure stronger security and confidentiality. Nevertheless, for the purpose of this lab, this approach streamlines the process and eliminates the need for repetitive password input.
 
 
 I proceeded by generating three text files named secret1.txt, secret2.txt, and secret3.txt, each containing distinct text of my choice. The content of these files was set to "Peanut," "Dumbbells," and "Tennis ball," respectively. All plaintext secret files have been diligently organized within a subdirectory called "OpenSSL Lab/Plaintexts." This ensures proper organization and management of the secret data within the project.
@@ -73,111 +74,17 @@ To accomplish this secure sharing, I create a new file in my password directory 
 <br />
 <br />
 To validate the encryption process, I test the system by decrypting "secret2.txt." However, instead of directly accessing the "password2.enc" file, I access the contents of the "password2_4Bob.enc" file. This approach allows me to securely access and retrieve the necessary information from "secret2.txt" while utilizing the additional encryption layer provided by "password2_4Bob.enc."
-
-<h3>Monitoring</h3>
-
-To ensure the files' hash values remain unchanged over time, I implement a continuous monitoring mechanism. The process involves calculating the hashes of all files in the targeted folder every 10 seconds using PowerShell's "Start-Sleep" command for efficient timing. These calculated hashes serve as the keys, which I then use to compare against the previously stored values in the dictionary.
-
 <br />
 <br />
-<img src="https://github.com/sdkallullathil/Powershell_project/blob/8126c957742c5b2c5c5eec75396dd761fd7c3056/script.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-
-By continuously comparing the latest hash values with their corresponding baseline entries in the dictionary, I can promptly detect any alterations or modifications to the files. This approach allows me to maintain the integrity and security of the files within the folder and ensures that any discrepancies are promptly identified and addressed.
-
-The File Integrity Monitor has three key monitoring functionalities,<br /><br />
-<b>Change Detection</b>
-<br /> 
-The program periodically calculates and compares the file hashes with their previously recorded values. If any modifications are made to the files, the program quickly identifies the changes by detecting differences in the hash values. When a file's hash differs from its previous value, the program generates an alert to notify the user about the detected change. This proactive approach helps users respond promptly to any unauthorized alterations or data tampering.
-<br />
-<br />
-<br />
-The content in the file "d.txt" before editing.
-<br />
-<img src="https://github.com/sdkallullathil/Powershell_project/blob/de35fe0025e8ca26173a321b9f7116add473b45f/textnochange.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-<br />
-<br />
-The output of the monitor.
-<br />
-<img src="https://github.com/sdkallullathil/Powershell_project/blob/873207275d29be02010f65ddcc68d88ff74edddc/nochange.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-<br />
-<br />
-The content in the file "d.txt" after editing.
-<br />
-<br />
-<br />
-<br />
-<img src="https://github.com/sdkallullathil/Powershell_project/blob/d44a212d8a301f37fa45189bab214bf0c77b903b/textxhange.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-<br />
-<br />
-The output of the monitor.
-<br />
-<br />
-<br />
-<br />
-<img src="https://github.com/sdkallullathil/Powershell_project/blob/1bf9ed487286ebbcbee4ae69949738d46705e271/change.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-<b>New File Monitoring</b>
-<br />
-The File Integrity Monitor is equipped to handle new files added to the monitored folder. Whenever a new file is detected, the program captures its details and generates a corresponding hash. The file's path and its hash value are then added to a comprehensive list of monitored files stored in the dictionary. This enables the program to maintain an up-to-date record of all files and ensures that new additions are included in the monitoring process.
-<br />
-<br />
-<br />
-<br />
-An new file "d-copy.txt" is created.
-<br />
-<br />
-<br />
-<br />
-<img src="https://github.com/sdkallullathil/Powershell_project/blob/a3f89e9d508d61aca4369c5a27062c95eadd2bc4/create1.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-<br />
-<br />
-The output of the monitor.
-<br />
-<br />
-<br />
-<br />
-<img src="https://github.com/sdkallullathil/Powershell_project/blob/c4fd8d84b5df3d57a445b959034d45e38b452bfb/newcreated.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-<b>File Deletion Tracking</b>
-<br />
-The program continuously tracks the presence of files within the designated folder. If a file is deleted, the File Integrity Monitor promptly identifies the absence by detecting the missing file path in the folder. The program then raises a notification to alert the user about the deleted file. This feature helps users stay informed about any unexpected deletions and aids in identifying potential security issues or unintentional data loss.
-<br />
-<br />
-<br />
-The file "d.txt" is deleted.
-<br />
-<br />
-<br />
-<br />
-<img src="https://github.com/sdkallullathil/Powershell_project/blob/070b4a5b28b117712d4d1f45895ca295c18483a6/delete1.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-<br />
-<br />
-The output of the monitor.
-<br />
-<br />
-<br />
-<br />
-<img src="https://github.com/sdkallullathil/Powershell_project/blob/c823beecaad8b5ba6ff85db4c5147d4c414acec2/delete.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
+<img src="https://github.com/sdkallullathil/Encription_OpenSSL/blob/f50ff83b3c2f461db248e827082e30d0db7079bf/tesing.png" height="90%" width="90%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 
 <h3>Conclusion</h3>
 
-By developing this File Integrity Monitor using PowerShell, I aimed to provide a reliable and straightforward solution for maintaining data integrity in a specific folder. It offers comprehensive monitoring capabilities, ensuring the integrity and security of the files within the designated folder. It provides real-time alerts and tracking for changes, additions, and deletions, enabling users to take immediate action when necessary.Users can rest assured that any changes to files within the monitored folder will be promptly detected and reported, helping them respond quickly to potential security threats or unintended modifications. 
+In conclusion, this portfolio project has successfully developed a robust and secure system that leverages the power of OpenSSL in the Kali Linux command line. By harnessing OpenSSL's capabilities and cryptographic protocols, the system achieves the primary goal of enhancing security by generating unique and secure encryption passwords.
+
+The implementation involves utilizing different ciphers to strengthen the overall security of the passwords and ensuring that secret files are securely encrypted without exposing plaintext passwords to the disk. Additionally, the system provides a secure method for exchanging passwords and enables users to securely share encrypted contents with specific individuals, safeguarding sensitive data while maintaining control over access.
+
+Through this project, the importance of secure password management and encryption techniques is highlighted, serving as an effective approach to safeguarding sensitive information in real-world scenarios. The integration of OpenSSL in Kali Linux demonstrates its versatility and effectiveness in strengthening data protection, making it a valuable addition to any security-focused project or application.
 
